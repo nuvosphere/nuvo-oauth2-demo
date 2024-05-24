@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Nuvo Login SDK demo</h1>
-    <button id="login">Login or Signup</button>
+    <button class="login">Login or Signup</button>
     <style>
       #NuvoLogin {
         display: none;
@@ -29,10 +29,19 @@
         height: 551px;
       }
     </style>
-    <div id="NuvoLogin"><iframe src="http://localhost:1025/ui"></iframe></div>
+    <div id="NuvoLogin"><iframe src="http://localhost:1025"></iframe></div>
     <script>
-      login.addEventListener("click", () => {
+      const iframe = NuvoLogin.querySelector("iframe");
+      document.querySelector(".login").addEventListener("click", () => {
         NuvoLogin.style.display = "flex";
+        iframe.contentWindow.postMessage("nuvo-login-init", iframe.src);
+      });
+      window.addEventListener("message", function (event) {
+        if (event.origin === new URL(iframe.src).origin) {
+          if (event.data === "nuvo-login-close") {
+            NuvoLogin.style.display = "none";
+          }
+        }
       });
     </script>
   </body>
