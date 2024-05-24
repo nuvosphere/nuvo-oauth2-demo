@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nuvo Login SDK demo</title>
+    <title>Nuvo oauth2 SDK demo</title>
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <h1>Nuvo Login SDK demo</h1>
+    <h1>Nuvo oauth2 SDK demo</h1>
     <button class="login">Login or Signup</button>
 
     <script>
-      const url = "http://localhost:1025";
+      const url = new URL("http://localhost:1025");
+      url.searchParams.set("return_url", location.href);
       document.querySelector(".login").addEventListener("click", () => {
-        const windowName = "Nuvo Login";
+        const windowName = "Nuvo oauth2 SDK";
         // 新窗口的宽度和高度
         const windowWidth = 480;
         const windowHeight = 551;
@@ -37,19 +38,16 @@
         const windowFeatures = `width=${windowWidth},height=${windowHeight},left=${left},top=${top},menubar=no,toolbar=no,location=no,scrollbars=yes`;
 
         // 使用 window.open 方法打开新的窗口
-        const popup = window.open(url, windowName, windowFeatures);
+        const popup = window.open(url.href, windowName, windowFeatures);
 
         // 检查 popup 是否成功打开
         if (!popup) {
-          alert("Popup 被浏览器阻止，请检查浏览器设置。");
+          alert("新窗口被浏览器阻止，请检查浏览器设置。");
         }
       });
       window.addEventListener("message", function (event) {
-        if (event.origin === new URL(url).origin) {
-          console.log('🌊', event)
-          // if (event.data === "nuvo-login-close") {
-          //   NuvoLogin.style.display = "none";
-          // }
+        if (event.origin === url.origin) {
+          console.log("🌊", event.data);
         }
       });
     </script>
