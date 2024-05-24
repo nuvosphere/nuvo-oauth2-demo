@@ -7,13 +7,45 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <form>
+      <input
+        type="radio"
+        id="testnet"
+        name="network"
+        value="https://oauth2.staging.nuvosphere.io"
+      />
+      <label for="testnet">testnet</label><br />
+      <input
+        type="radio"
+        id="mainnet"
+        name="network"
+        value="https://oauth2.nuvosphere.io"
+      />
+      <label for="mainnet">mainnet</label><br />
+      <input
+        type="radio"
+        id="dev"
+        name="network"
+        value="http://localhost:1025"
+        checked
+      />
+      <label for="dev">dev</label><br />
+    </form>
     <h1>Nuvo oauth2 SDK demo</h1>
     <button class="login">Login or Signup</button>
 
     <script>
-      const url = new URL("http://localhost:1025");
-      url.searchParams.set("return_url", location.href);
       document.querySelector(".login").addEventListener("click", () => {
+        let network = "";
+        document.querySelectorAll("input[name=network]").forEach((e) => {
+          if (e.checked) {
+            network = e.value;
+          }
+        });
+
+        const url = new URL(network);
+        url.searchParams.set("return_url", location.href);
+
         const windowName = "Nuvo oauth2 SDK";
         // 新窗口的宽度和高度
         const windowWidth = 480;
@@ -42,10 +74,17 @@
 
         // 检查 popup 是否成功打开
         if (!popup) {
-          alert("新窗口被浏览器阻止，请检查浏览器设置。");
+          alert("window.open 新窗口被浏览器阻止，请检查浏览器设置。");
         }
       });
       window.addEventListener("message", function (event) {
+        let network = "";
+        document.querySelectorAll("input[name=network]").forEach((e) => {
+          if (e.checked) {
+            network = e.value;
+          }
+        });
+        const url = new URL(network);
         if (event.origin === url.origin) {
           console.log("🌊", event.data);
         }
