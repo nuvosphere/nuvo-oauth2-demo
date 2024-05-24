@@ -9,39 +9,47 @@
   <body>
     <h1>Nuvo Login SDK demo</h1>
     <button class="login">Login or Signup</button>
-    <style>
-      #NuvoLogin {
-        display: none;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }
-      #NuvoLogin iframe {
-        border: none;
-        border-radius: 20px;
-        box-shadow: 0px 30px 56px 0px rgba(0, 0, 0, 0.35),
-          0px 4px 12px 0px rgba(0, 0, 0, 0.65);
-        width: 480px;
-        height: 551px;
-      }
-    </style>
-    <div id="NuvoLogin"><iframe src="http://localhost:1025"></iframe></div>
+
     <script>
-      const NuvoLogin = document.querySelector("#NuvoLogin");
-      const iframe = NuvoLogin.querySelector("iframe");
+      const url = "http://localhost:1025";
       document.querySelector(".login").addEventListener("click", () => {
-        NuvoLogin.style.display = "flex";
-        iframe.contentWindow.postMessage("nuvo-login-init", iframe.src);
+        const windowName = "Nuvo Login";
+        // 新窗口的宽度和高度
+        const windowWidth = 480;
+        const windowHeight = 551;
+
+        // 计算屏幕居中位置
+        const screenLeft = window.screenLeft || window.screenX;
+        const screenTop = window.screenTop || window.screenY;
+        const screenWidth =
+          window.innerWidth ||
+          document.documentElement.clientWidth ||
+          screen.width;
+        const screenHeight =
+          window.innerHeight ||
+          document.documentElement.clientHeight ||
+          screen.height;
+
+        const left = screenWidth / 2 - windowWidth / 2 + screenLeft;
+        const top = screenHeight / 2 - windowHeight / 2 + screenTop;
+
+        // 配置新窗口的特性
+        const windowFeatures = `width=${windowWidth},height=${windowHeight},left=${left},top=${top},menubar=no,toolbar=no,location=no,scrollbars=yes`;
+
+        // 使用 window.open 方法打开新的窗口
+        const popup = window.open(url, windowName, windowFeatures);
+
+        // 检查 popup 是否成功打开
+        if (!popup) {
+          alert("Popup 被浏览器阻止，请检查浏览器设置。");
+        }
       });
       window.addEventListener("message", function (event) {
-        if (event.origin === new URL(iframe.src).origin) {
-          if (event.data === "nuvo-login-close") {
-            NuvoLogin.style.display = "none";
-          }
+        if (event.origin === new URL(url).origin) {
+          console.log('🌊', event)
+          // if (event.data === "nuvo-login-close") {
+          //   NuvoLogin.style.display = "none";
+          // }
         }
       });
     </script>
