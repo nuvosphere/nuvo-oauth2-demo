@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <h4>Network</h4>
     <form>
       <input
         type="radio"
@@ -31,19 +32,69 @@
       />
       <label for="dev">dev</label><br />
     </form>
+
+    <h4>Login Type</h4>
+    <form>
+      <input type="radio" id="popup" name="login-type" value="popup" />
+      <label for="popup">popup window</label><br />
+      <input
+        type="radio"
+        id="iframe"
+        name="login-type"
+        value="iframe"
+        checked
+      />
+      <label for="iframe">iframe</label><br />
+    </form>
     <h1>Nuvo oauth2 SDK demo</h1>
     <button class="login">Login or Signup</button>
 
+    <!-- iframe -->
+    <style>
+      #Oauth2 {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      #Oauth2 iframe {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0px 30px 56px 0px rgba(0, 0, 0, 0.35),
+          0px 4px 12px 0px rgba(0, 0, 0, 0.65);
+        width: 480px;
+        height: 551px;
+      }
+    </style>
+    <div id="Oauth2"><iframe src="http://localhost:1025"></iframe></div>
+
     <script>
-      document.querySelector(".login").addEventListener("click", () => {
+      const getNetwork = () => {
         let network = "";
         document.querySelectorAll("input[name=network]").forEach((e) => {
           if (e.checked) {
             network = e.value;
           }
         });
+        return network;
+      };
 
-        const url = new URL(network);
+      const getLoginType = () => {
+        let loginType = "";
+        document.querySelectorAll("input[name=login-type]").forEach((e) => {
+          if (e.checked) {
+            loginType = e.value;
+          }
+        });
+        return loginType;
+      };
+
+      const popupLogin = () => {
+        const url = new URL(getNetwork());
         url.searchParams.set("return_url", location.href);
 
         const windowName = "Nuvo oauth2 SDK";
@@ -76,17 +127,29 @@
         if (!popup) {
           alert("window.open 新窗口被浏览器阻止，请检查浏览器设置。");
         }
+      };
+
+      const iframeLogin = () => {
+        document.querySelector("#Oauth2").style.display = "flex";
+      };
+
+      document.querySelector(".login").addEventListener("click", () => {
+        const type = getLoginType();
+        if (type === "popup") {
+          popupLogin();
+        } else if (type === "iframe") {
+          iframeLogin();
+        }
       });
+
       window.addEventListener("message", function (event) {
-        let network = "";
-        document.querySelectorAll("input[name=network]").forEach((e) => {
-          if (e.checked) {
-            network = e.value;
-          }
-        });
-        const url = new URL(network);
+        const url = new URL(getNetwork());
         if (event.origin === url.origin) {
-          console.log("🌊", event.data);
+          if (event.data === "close") {
+            document.querySelector("#Oauth2").style.display = "none";
+          } else {
+            console.log("🌊", event.data);
+          }
         }
       });
     </script>
