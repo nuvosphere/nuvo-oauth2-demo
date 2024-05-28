@@ -71,7 +71,7 @@
       }
     </style>
     <div id="Oauth2">
-      <iframe src="http://localhost:1025"></iframe>
+      <iframe src="https://oauth2.staging.nuvosphere.io"></iframe>
     </div>
 
     <script>
@@ -146,6 +146,10 @@
         } else if (type === "iframe") {
           iframeLogin();
         }
+      });
+
+      document.querySelector("#Oauth2").addEventListener("click", (event) => {
+        document.querySelector("#Oauth2").style.display = "none";
       });
 
       window.addEventListener("message", function (event) {
