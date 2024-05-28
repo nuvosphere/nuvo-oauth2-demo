@@ -70,9 +70,18 @@
         height: 551px;
       }
     </style>
-    <div id="Oauth2"><iframe src="http://localhost:1025"></iframe></div>
+    <div id="Oauth2">
+      <iframe src="http://localhost:1025"></iframe>
+    </div>
 
     <script>
+      const radios = document.querySelectorAll("input[name=network]");
+      radios.forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+          document.querySelector("#Oauth2 iframe").src = event.target.value;
+        });
+      });
+
       const getNetwork = () => {
         let network = "";
         document.querySelectorAll("input[name=network]").forEach((e) => {
@@ -94,9 +103,6 @@
       };
 
       const popupLogin = () => {
-        const url = new URL(getNetwork());
-        url.searchParams.set("return_url", location.href);
-
         const windowName = "Nuvo oauth2 SDK";
         // 新窗口的宽度和高度
         const windowWidth = 480;
@@ -121,7 +127,7 @@
         const windowFeatures = `width=${windowWidth},height=${windowHeight},left=${left},top=${top},menubar=no,toolbar=no,location=no,scrollbars=yes`;
 
         // 使用 window.open 方法打开新的窗口
-        const popup = window.open(url.href, windowName, windowFeatures);
+        const popup = window.open(getNetwork(), windowName, windowFeatures);
 
         // 检查 popup 是否成功打开
         if (!popup) {
