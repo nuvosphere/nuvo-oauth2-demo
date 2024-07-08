@@ -162,7 +162,7 @@
           } else if (event.data?.type === "login-success") {
             const code = event.data.code;
             console.log("🌊 Code", code);
-            const host = "http://44.238.195.246:18030";
+            const host = "https://backoffice.staging.nuvosphere.io/dex";
             fetch(host + "/api/v1/login/user/token?code=" + code)
               .then((res) => res.json())
               .then((res) => {
