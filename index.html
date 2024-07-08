@@ -14,21 +14,21 @@
         id="testnet"
         name="network"
         value="https://oauth2.staging.nuvosphere.io?app_id=663d9ca53d72720014449318&return_url=http://localhost:3000"
-        checked
       />
       <label for="testnet">testnet</label><br />
       <input
         type="radio"
         id="mainnet"
         name="network"
-        value="https://oauth2.nuvosphere.io"
+        value="https://oauth2.nuvosphere.io?app_id=663d9ca53d72720014449318&return_url=http://localhost:3000"
       />
       <label for="mainnet">mainnet</label><br />
       <input
         type="radio"
         id="dev"
         name="network"
-        value="http://localhost:1025"
+        value="http://localhost:1025?app_id=663d9ca53d72720014449318&return_url=http://localhost:3000"
+        checked
       />
       <label for="dev">dev</label><br />
     </form>
@@ -72,7 +72,7 @@
     </style>
     <div id="Oauth2">
       <iframe
-        src="https://oauth2.staging.nuvosphere.io?app_id=663d9ca53d72720014449318&return_url=http://localhost:3000"
+        src="http://localhost:1025?app_id=663d9ca53d72720014449318&return_url=http://localhost:3000"
       ></iframe>
     </div>
 
@@ -154,13 +154,28 @@
         document.querySelector("#Oauth2").style.display = "none";
       });
 
-      window.addEventListener("message", function (event) {
+      window.addEventListener("message", async (event) => {
         const url = new URL(getNetwork());
         if (event.origin === url.origin) {
           if (event.data === "close") {
             document.querySelector("#Oauth2").style.display = "none";
-          } else {
-            console.log("🌊", event.data);
+          } else if (event.data?.type === "login-success") {
+            const code = event.data.code;
+            console.log("🌊 Code", code);
+            const host = "http://44.238.195.246:18030";
+            fetch(host + "/api/v1/login/user/token?code=" + code)
+              .then((res) => res.json())
+              .then((res) => {
+                const token = res.data?.token;
+                console.log("🌊 Token", token);
+                fetch(host + "/api/v1/user/info", {
+                  headers: { Authorization: "Bearer " + token },
+                })
+                  .then((res) => res.json())
+                  .then((res) => {
+                    console.log("🌊 UserInfo", res.data);
+                  });
+              });
           }
         }
       });
