@@ -1,9 +1,5 @@
-# nuvo-login-demo
+# Nuvo Oauth2 SDK demo
 
-Nuvo Login SDK demo
+1. npm i -g http-server
 
-全局安装 http-server
-npm i -g http-server
-
-启动 http-server
-http-server
+2. http-server
