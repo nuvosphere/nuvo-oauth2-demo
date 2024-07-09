@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
+
   app: {
     head: {
       title: 'Nuvo oauth2 SDK demo',
@@ -12,12 +13,15 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   // generate
   experimental: {
     payloadExtraction: false,
   },
+
   // modules
   modules: ['@element-plus/nuxt', '@pinia/nuxt', '@nuxtjs/color-mode', '@nuxtjs/device'],
+
   // colorMode: {
   //   preference: 'dark',
   //   fallback: 'dark',
@@ -25,8 +29,12 @@ export default defineNuxtConfig({
   // },
   // https://content.nuxtjs.org/examples/mdc/nested-components
   components: [{ path: '~/components', global: true }],
+
   elementPlus: { importStyle: 'scss' },
+
   devServer: {
     port: 8080,
   },
+
+  compatibilityDate: '2024-07-09',
 })
