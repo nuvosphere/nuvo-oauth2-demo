@@ -1,3 +1,14 @@
+<template>
+  <div id="app">
+    <nuxt-page class="page" />
+  </div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style lang="scss">
+// global
+// @use 'element-plus/theme-chalk/dark/css-vars.css' as *;
 html,
 body {
   height: 100%;
@@ -32,3 +43,4 @@ button:active {
   background-color: #004085;
   transform: translateY(0);
 }
+</style>
