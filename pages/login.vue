@@ -7,7 +7,7 @@
     </el-radio-group>
 
     <h1>Nuvo oauth2 SDK demo</h1>
-    <el-button class="login" @click="login">Login or Signup</el-button>
+    <el-button @click="login">Login or Signup</el-button>
 
     <div id="Oauth2" v-show="showIframe" @click="showIframe = false">
       <iframe :src="network"></iframe>

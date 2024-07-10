@@ -10,19 +10,16 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.9",
     "@nuxtjs/color-mode": "^3.4.2",
+    "@nuxtjs/device": "^3.1.1",
     "@pinia/nuxt": "^0.5.1",
     "@types/node": "^20.14.10",
     "axios": "^1.7.2",
     "element-plus": "^2.7.6",
     "nuxt": "^3.12.3",
-    "sass": "^1.77.6"
+    "sass": "1.69.6"
   },
   "dependencies": {
-    "@nuxtjs/device": "^3.1.1",
-    "@types/js-cookie": "^3.0.6",
-    "@web3modal/ethers": "^5.0.6",
-    "ethers": "^6.13.1",
-    "js-cookie": "^3.0.5",
-    "recaptcha-v3": "^1.10.0"
+    "@metis.io/middleware-client": "1.1.39",
+    "ethers": "5.7.2"
   }
 }
