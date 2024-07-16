@@ -133,7 +133,7 @@ onMounted(() => {
   border: none;
   border-radius: 20px;
   box-shadow: 0px 30px 56px 0px rgba(0, 0, 0, 0.35), 0px 4px 12px 0px rgba(0, 0, 0, 0.65);
-  width: 480px;
-  height: 551px;
+  width: 582px;
+  height: 602px;
 }
 </style>
