@@ -1,19 +1,33 @@
-import { PolisProvider } from '@metis.io/middleware-client'
+import { PolisClient, PolisProvider } from '@metis.io/middleware-client'
 import { Contract, ethers } from 'ethers'
 import { parseEther, parseUnits } from 'ethers/lib/utils'
 
 const getProvider = (accessToken: string) => {
+  // const polisClient = new PolisClient({
+  //   appId: '646da224e530a70013d94d8f',
+  //   chainId: 59902,
+  //   apiHost: 'https://api.staging.nuvosphere.io/',
+  //   oauthHost: 'http://localhost:1025/nuvo-login/',
+  //   debug: true,
+  //   // useNuvoProvider: true
+  // })
+  // await polisClient.connect(accessToken, true)
+  // return polisClient.web3Provider
+
   const polisProvider = new PolisProvider({
     apiHost: 'https://api.staging.nuvosphere.io/',
+    oauthHost: 'https://oauth2.staging.nuvosphere.io/',
+    oauthPath: 'oauth2',
     token: accessToken,
     chainId: 59902,
+    debug: true,
   })
   const provider = new ethers.providers.Web3Provider(polisProvider)
   return provider
 }
 
 const toAddress = '0xC70AEF5Db0fC96E9B6c0c76A2F21206c24618932'
-const toAmount = '0.01'
+const toAmount = '0.001'
 
 export const useUserStore = defineStore({
   id: 'userStore',
@@ -25,7 +39,6 @@ export const useUserStore = defineStore({
   },
   actions: {
     async sendNativeToken() {
-      const fullLoading = ElLoading.service({ fullscreen: true })
       const tx = {
         to: toAddress,
         value: parseEther(toAmount).toString(),
@@ -34,6 +47,7 @@ export const useUserStore = defineStore({
       const signer = provider.getSigner()
       try {
         // 发送交易
+        console.log('🌊', tx)
         const response = await signer.sendTransaction(tx)
         console.log('Transaction hash:', response.hash)
         // 等待交易被确认
@@ -42,10 +56,8 @@ export const useUserStore = defineStore({
       } catch (error) {
         console.log('tx error', error)
       }
-      fullLoading.close()
     },
     async sendERC20Token() {
-      const fullLoading = ElLoading.service({ fullscreen: true })
       const provider = getProvider(this.accessToken)
       // ERC20 Token 合约地址
       const contractAddress = '0xAa0149B513f4b2a04998bb0E4fEA9463a7b51C74'
@@ -93,7 +105,6 @@ export const useUserStore = defineStore({
       } catch (error) {
         console.log('tx error', error)
       }
-      fullLoading.close()
     },
   },
 })

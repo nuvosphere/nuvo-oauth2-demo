@@ -4,9 +4,9 @@ export const useLogin = () => {
   const loginType = ref('open')
   const showIframe = ref(false)
 
-  const oauth2Host = 'https://oauth2.staging.nuvosphere.io'
-  // const oauth2Host = 'https://oauth2.nuvosphere.io'
-  // const oauth2Host = 'http://localhost:1025'
+  const oauth2Host = 'https://oauth2.staging.nuvosphere.io/nuvo-login'
+  // const oauth2Host = 'https://oauth2.nuvosphere.io/nuvo-login'
+  // const oauth2Host = 'http://localhost:1025/nuvo-login/'
   const app_id = '646da224e530a70013d94d8f'
   const app_key = 'f57c91e92f2846f99db27aba641e7dfd'
   const return_url = 'http://127.0.0.1:3000'

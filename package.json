@@ -19,7 +19,7 @@
     "sass": "1.69.6"
   },
   "dependencies": {
-    "@metis.io/middleware-client": "1.1.51",
+    "@metis.io/middleware-client": "1.1.52",
     "ethers": "5.7.2"
   }
 }
