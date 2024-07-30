@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@metis.io/middleware-client':
-        specifier: 1.1.39
-        version: 1.1.39(@babel/core@7.24.7)
+        specifier: 1.1.51
+        version: 1.1.51(@babel/core@7.24.7)
       ethers:
         specifier: 5.7.2
         version: 5.7.2
@@ -821,8 +821,8 @@ packages:
   '@metamask/safe-event-emitter@2.0.0':
     resolution: {integrity: sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==}
 
-  '@metis.io/middleware-client@1.1.39':
-    resolution: {integrity: sha512-S/pk3YsoezvdFJq+6gIFUin/Iz9+Gte9x7bObsqAc3g9Fwl6X7hB13sjpvCABOC9XKkcnkHJmeCO9nncmkKtmg==}
+  '@metis.io/middleware-client@1.1.51':
+    resolution: {integrity: sha512-dlZKWbK/c96IPDNhjF/grINvctyL6oJcN7RfDC3JFDrNHJBsl1pGpGmOOTGtuorZEV/eIPN51eTgERWemTG4qQ==}
 
   '@netlify/functions@2.8.1':
     resolution: {integrity: sha512-+6wtYdoz0yE06dSa9XkP47tw5zm6g13QMeCwM3MmHx1vn8hzwFa51JtmfraprdkL7amvb7gaNM+OOhQU1h6T8A==}
@@ -2357,7 +2357,7 @@ packages:
     engines: {node: '>=14'}
 
   forever-agent@0.6.1:
-    resolution: {integrity: sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=}
+    resolution: {integrity: sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==}
 
   form-data@2.3.3:
     resolution: {integrity: sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==}
@@ -3140,7 +3140,7 @@ packages:
     engines: {node: '>=0.10.0'}
 
   object-keys@0.4.0:
-    resolution: {integrity: sha512-ncrLw+X55z7bkl5PnUvHwFK9FcGuFYo9gtjws2XtSzL+aZ8tm830P60WJ0dSmFVaSalWieW5MD7kEdnXda9yJw==}
+    resolution: {integrity: sha1-KKaq50KN0sOpLz2V8hM13SBOAzY=}
 
   object-keys@1.1.1:
     resolution: {integrity: sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==}
@@ -5215,7 +5215,7 @@ snapshots:
 
   '@metamask/safe-event-emitter@2.0.0': {}
 
-  '@metis.io/middleware-client@1.1.39(@babel/core@7.24.7)':
+  '@metis.io/middleware-client@1.1.51(@babel/core@7.24.7)':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0

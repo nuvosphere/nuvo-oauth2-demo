@@ -13,13 +13,18 @@
 <script setup lang="ts">
 const userStore = useUserStore()
 const router = useRouter()
+const route = useRoute()
 
+const { loginCallback } = useLogin()
 const disconnect = () => {
   localStorage.removeItem('accessToken')
   router.push('/login')
 }
 onMounted(() => {
-  if (!userStore.address) {
+  const code = route.query.code as string
+  if (code) {
+    loginCallback(code)
+  } else if (!userStore.address) {
     router.push('/login')
   }
 })

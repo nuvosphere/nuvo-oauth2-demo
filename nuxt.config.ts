@@ -33,7 +33,8 @@ export default defineNuxtConfig({
   elementPlus: { importStyle: 'scss' },
 
   devServer: {
-    port: 8080,
+    host: '127.0.0.1',
+    port: 3000,
   },
 
   compatibilityDate: '2024-07-09',
