@@ -1,4 +1,4 @@
-# nuvo-login
+# Nuvo Login
 
 Nuvo Login SDK
 
