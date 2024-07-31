@@ -2,26 +2,15 @@ import { PolisClient, PolisProvider } from '@metis.io/middleware-client'
 import { BrowserProvider, parseEther, formatEther, toBigInt } from 'ethers'
 
 const getProvider = async (accessToken: string) => {
-  // const polisClient = new PolisClient({
-  //   appId: '646da224e530a70013d94d8f',
-  //   chainId: 1088,
-  //   apiHost: 'https://api.nuvosphere.io/',
-  //   oauthHost: 'https://oauth2.nuvosphere.io/',
-  //   debug: true,
-  //   // useNuvoProvider: true
-  // })
-  // await polisClient.connect(accessToken, true)
-  // return polisClient.web3Provider
-
-  const polisProvider = new PolisProvider({
+  const polisClient = new PolisClient({
+    chainId: 1088,
+    appId: '64ec797cf07153000129ca00',
     apiHost: 'https://api.nuvosphere.io/',
     oauthHost: 'https://oauth2.nuvosphere.io/',
-    oauthPath: 'nuvo-login',
-    token: accessToken,
-    chainId: 1088,
-    debug: true,
+    oauthPath: 'oauth2',
   })
-  return new BrowserProvider(polisProvider)
+  await polisClient.connect(accessToken, true)
+  return polisClient.web3Provider
 }
 
 const toAddress = '0xC70AEF5Db0fC96E9B6c0c76A2F21206c24618932'
@@ -61,12 +50,9 @@ export const useUserStore = defineStore({
       const fullLoading = ElLoading.service({ fullscreen: true, text: 'Get Balance' })
       const provider = await getProvider(this.accessToken)
       const signer = await provider.getSigner()
-      const address = signer.getAddress()
+      const address = await signer.getAddress()
       const balance = await provider.getBalance(address)
-      this.balance = formatEther(balance).toString()
-      // const address = await signer.getAddress()
-      // const balance = await provider.getBalance(address)
-      // this.balance = formatEther(balance.toBigInt()).toString()
+      this.balance = formatEther(balance.toBigInt()).toString()
       fullLoading.close()
     },
   },

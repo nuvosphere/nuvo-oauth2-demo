@@ -7,7 +7,7 @@ export const useLogin = () => {
 
   const app_id = '64ec797cf07153000129ca00'
   const app_key = '1436fb5e7c234c83902d8a9665d24e66'
-  const return_url = 'http://127.0.0.1:3000'
+  const return_url = 'https://me.nuvosphere.io'
   const network = computed(() => {
     return `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
   })
