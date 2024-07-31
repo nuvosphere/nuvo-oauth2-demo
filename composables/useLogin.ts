@@ -1,16 +1,14 @@
 import axios from 'axios'
 
 export const useLogin = () => {
-  const loginType = ref('open')
+  const loginType = ref('iframe')
+  const oauth2Host = ref('https://oauth2.staging.nuvosphere.io/nuvo-login/')
   const showIframe = ref(false)
 
-  const oauth2Host = 'https://oauth2.staging.nuvosphere.io/nuvo-login'
-  // const oauth2Host = 'https://oauth2.nuvosphere.io/nuvo-login'
-  // const oauth2Host = 'http://localhost:1025/nuvo-login/'
   const app_id = '646da224e530a70013d94d8f'
   const app_key = 'f57c91e92f2846f99db27aba641e7dfd'
   const return_url = 'http://127.0.0.1:3000'
-  const network = `${oauth2Host}?app_id=${app_id}&return_url=${return_url}`
+  const network = `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
 
   const login = async () => {
     const type = loginType.value
@@ -88,6 +86,7 @@ export const useLogin = () => {
     init,
     login,
     loginCallback,
+    oauth2Host,
     network,
     showIframe,
     loginType,
