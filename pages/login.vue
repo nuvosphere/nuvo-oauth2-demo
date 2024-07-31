@@ -31,7 +31,7 @@ const { init, login, loginCallback, loginType, network, showIframe, oauth2Host }
 
 onMounted(() => {
   window.addEventListener('message', async (event) => {
-    const url = new URL(network)
+    const url = new URL(network.value)
     if (event.origin === url.origin) {
       if (event.data === 'close') {
         showIframe.value = false

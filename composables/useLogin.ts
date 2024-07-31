@@ -8,14 +8,16 @@ export const useLogin = () => {
   const app_id = '646da224e530a70013d94d8f'
   const app_key = 'f57c91e92f2846f99db27aba641e7dfd'
   const return_url = 'http://127.0.0.1:3000'
-  const network = `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
+  const network = computed(() => {
+    return `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
+  })
 
   const login = async () => {
     const type = loginType.value
     if (type === 'popup') {
       popupLogin()
     } else if (type === 'open') {
-      location.href = network
+      location.href = network.value
     } else if (type === 'iframe') {
       showIframe.value = true
     }
@@ -74,7 +76,7 @@ export const useLogin = () => {
     const windowFeatures = `width=${windowWidth},height=${windowHeight},left=${left},top=${top},menubar=no,toolbar=no,location=no,scrollbars=yes`
 
     // 使用 window.open 方法打开新的窗口
-    const popup = window.open(network, windowName, windowFeatures)
+    const popup = window.open(network.value, windowName, windowFeatures)
 
     // 检查 popup 是否成功打开
     if (!popup) {

@@ -5,8 +5,12 @@
     <h4>ETH Address: {{ userStore.address }}</h4>
     <h4>Access Token: {{ userStore.accessToken }}</h4>
 
-    <el-button @click="userStore.sendNativeToken">send Metis</el-button>
-    <el-button @click="userStore.sendERC20Token">send USDT</el-button>
+    <div>
+      <el-button @click="userStore.getBalance">Get Balance</el-button>
+      <el-button @click="userStore.sendNativeToken">Send Metis</el-button>
+    </div>
+    <br />
+    <span> Balance: {{ userStore.balance }} METIS </span>
   </div>
 </template>
 
