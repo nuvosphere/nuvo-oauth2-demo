@@ -4,9 +4,9 @@ import { BrowserProvider, parseEther, formatEther, toBigInt } from 'ethers'
 const getProvider = async (accessToken: string) => {
   // const polisClient = new PolisClient({
   //   appId: '646da224e530a70013d94d8f',
-  //   chainId: 59902,
-  //   apiHost: 'https://api.staging.nuvosphere.io/',
-  //   oauthHost: 'https://oauth2.staging.nuvosphere.io/',
+  //   chainId: 1088,
+  //   apiHost: 'https://api.nuvosphere.io/',
+  //   oauthHost: 'https://oauth2.nuvosphere.io/',
   //   debug: true,
   //   // useNuvoProvider: true
   // })
@@ -14,11 +14,11 @@ const getProvider = async (accessToken: string) => {
   // return polisClient.web3Provider
 
   const polisProvider = new PolisProvider({
-    apiHost: 'https://api.staging.nuvosphere.io/',
-    oauthHost: 'https://oauth2.staging.nuvosphere.io/',
-    oauthPath: 'oauth2',
+    apiHost: 'https://api.nuvosphere.io/',
+    oauthHost: 'https://oauth2.nuvosphere.io/',
+    oauthPath: 'nuvo-login',
     token: accessToken,
-    chainId: 59902,
+    chainId: 1088,
     debug: true,
   })
   return new BrowserProvider(polisProvider)

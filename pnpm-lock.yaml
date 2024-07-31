@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@metis.io/middleware-client':
-        specifier: 1.1.53
-        version: 1.1.53(@babel/core@7.24.7)
+        specifier: 1.1.54
+        version: 1.1.54(@babel/core@7.24.7)
       ethers:
         specifier: ^6.13.2
         version: 6.13.2
@@ -824,8 +824,8 @@ packages:
   '@metamask/safe-event-emitter@2.0.0':
     resolution: {integrity: sha512-/kSXhY692qiV1MXu6EeOZvg5nECLclxNXcKCxJ3cXQgYuRymRHpdx/t7JXfsK+JLjwA1e1c1/SBrlQYpusC29Q==}
 
-  '@metis.io/middleware-client@1.1.53':
-    resolution: {integrity: sha512-PhPUAExOHZNwwSvDUzXyuL8n+RR6CU1LD3RhBwIolKvH11l6blKrT6XphBOVZgvkTzsN+wWxiqGZVkM6DYXBtw==}
+  '@metis.io/middleware-client@1.1.54':
+    resolution: {integrity: sha512-UhK8SFERhqUBDW8IHr7q+KDzJjYtSR3+4bVrId1Lrn4GjevCbk9Ppav4Lq+E4b8y6div/gQhD5Iq3TQoazUFqQ==}
 
   '@netlify/functions@2.8.1':
     resolution: {integrity: sha512-+6wtYdoz0yE06dSa9XkP47tw5zm6g13QMeCwM3MmHx1vn8hzwFa51JtmfraprdkL7amvb7gaNM+OOhQU1h6T8A==}
@@ -1585,7 +1585,7 @@ packages:
     resolution: {integrity: sha512-zj6Z6M7Eq+PBZ7PQxl5NT665MvJdAkzp0f60nAJ+sLaSCBPMwVak5ZegFbgVCzFcCJTKFoMizvM5Ld7+JrRJHA==}
 
   backoff@2.5.0:
-    resolution: {integrity: sha512-wC5ihrnUXmR2douXmXLCe5O3zg3GKIyvRi/hi58a/XyRxVI+3/yM0PYueQOZXPXQ9pxBislYkw+sF9b7C/RuMA==}
+    resolution: {integrity: sha1-9hbtqdPktmuMp/ynn2lXIsX44m8=}
     engines: {node: '>= 0.6'}
 
   balanced-match@1.0.2:
@@ -5297,7 +5297,7 @@ snapshots:
 
   '@metamask/safe-event-emitter@2.0.0': {}
 
-  '@metis.io/middleware-client@1.1.53(@babel/core@7.24.7)':
+  '@metis.io/middleware-client@1.1.54(@babel/core@7.24.7)':
     dependencies:
       '@ethersproject/abstract-provider': 5.7.0
       '@ethersproject/abstract-signer': 5.7.0

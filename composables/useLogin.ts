@@ -2,11 +2,11 @@ import axios from 'axios'
 
 export const useLogin = () => {
   const loginType = ref('iframe')
-  const oauth2Host = ref('https://oauth2.staging.nuvosphere.io/nuvo-login/')
+  const oauth2Host = ref('https://oauth2.nuvosphere.io/nuvo-login/')
   const showIframe = ref(false)
 
-  const app_id = '646da224e530a70013d94d8f'
-  const app_key = 'f57c91e92f2846f99db27aba641e7dfd'
+  const app_id = '64ec797cf07153000129ca00'
+  const app_key = '1436fb5e7c234c83902d8a9665d24e66'
   const return_url = 'http://127.0.0.1:3000'
   const network = computed(() => {
     return `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
@@ -27,9 +27,9 @@ export const useLogin = () => {
   const router = useRouter()
   const init = async (accessToken: string) => {
     const { data: res } = await axios({
-      baseURL: 'https://api.staging.nuvosphere.io',
+      baseURL: 'https://api.nuvosphere.io',
       url: '/api/v1/oauth2/nft/my-profile',
-      params: { chainid: 59902 },
+      params: { chainid: 1088 },
       headers: { 'Access-Token': accessToken },
     })
     if (res.code === 200) {
@@ -41,7 +41,7 @@ export const useLogin = () => {
 
   const loginCallback = async (code: string) => {
     const { data: res } = await axios({
-      baseURL: 'https://api.staging.nuvosphere.io',
+      baseURL: 'https://api.nuvosphere.io',
       url: '/api/v1/oauth2/access_token',
       params: {
         appid: app_id,
