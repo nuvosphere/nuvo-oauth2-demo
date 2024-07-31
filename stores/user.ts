@@ -1,28 +1,27 @@
 import { PolisClient, PolisProvider } from '@metis.io/middleware-client'
-import { BrowserProvider, parseEther, formatEther, toBigInt, type BigNumberish } from 'ethers'
+import { BrowserProvider, parseEther, formatEther, toBigInt } from 'ethers'
 
 const getProvider = async (accessToken: string) => {
-  const polisClient = new PolisClient({
-    appId: '646da224e530a70013d94d8f',
-    chainId: 59902,
-    apiHost: 'https://api.staging.nuvosphere.io/',
-    oauthHost: 'https://oauth2.staging.nuvosphere.io/',
-    debug: true,
-    // useNuvoProvider: true
-  })
-  await polisClient.connect(accessToken, true)
-  return polisClient.web3Provider
-
-  // const polisProvider = new PolisProvider({
+  // const polisClient = new PolisClient({
+  //   appId: '646da224e530a70013d94d8f',
+  //   chainId: 59902,
   //   apiHost: 'https://api.staging.nuvosphere.io/',
   //   oauthHost: 'https://oauth2.staging.nuvosphere.io/',
-  //   oauthPath: 'oauth2',
-  //   token: accessToken,
-  //   chainId: 59902,
   //   debug: true,
+  //   // useNuvoProvider: true
   // })
-  // const provider = new BrowserProvider(polisProvider)
-  // return provider
+  // await polisClient.connect(accessToken, true)
+  // return polisClient.web3Provider
+
+  const polisProvider = new PolisProvider({
+    apiHost: 'https://api.staging.nuvosphere.io/',
+    oauthHost: 'https://oauth2.staging.nuvosphere.io/',
+    oauthPath: 'oauth2',
+    token: accessToken,
+    chainId: 59902,
+    debug: true,
+  })
+  return new BrowserProvider(polisProvider)
 }
 
 const toAddress = '0xC70AEF5Db0fC96E9B6c0c76A2F21206c24618932'
@@ -44,7 +43,7 @@ export const useUserStore = defineStore({
         value: parseEther(toAmount).toString(),
       }
       const provider = await getProvider(this.accessToken)
-      const signer = provider.getSigner()
+      const signer = await provider.getSigner()
       try {
         // 发送交易
         console.log('🌊', tx)
@@ -61,10 +60,13 @@ export const useUserStore = defineStore({
       this.balance = '0'
       const fullLoading = ElLoading.service({ fullscreen: true, text: 'Get Balance' })
       const provider = await getProvider(this.accessToken)
-      const signer = provider.getSigner()
-      const address = await signer.getAddress()
+      const signer = await provider.getSigner()
+      const address = signer.getAddress()
       const balance = await provider.getBalance(address)
-      this.balance = formatEther(balance.toBigInt()).toString()
+      this.balance = formatEther(balance).toString()
+      // const address = await signer.getAddress()
+      // const balance = await provider.getBalance(address)
+      // this.balance = formatEther(balance.toBigInt()).toString()
       fullLoading.close()
     },
   },
