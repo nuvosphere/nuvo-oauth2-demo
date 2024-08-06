@@ -8,15 +8,11 @@
     </el-radio-group>
     <h4>Network</h4>
     <el-radio-group v-model="oauth2Host">
-      <el-radio value="https://oauth2.nuvosphere.io/nuvo-login/">
-        https://oauth2.nuvosphere.io/nuvo-login/
-      </el-radio>
-      <!-- <el-radio value="https://oauth2.staging.nuvosphere.io/nuvo-login/">
-        https://oauth2.nuvosphere.io/nuvo-login/
+      <!-- <el-radio value="https://oauth2.nuvosphere.io"> https://oauth2.nuvosphere.io </el-radio> -->
+      <!-- <el-radio value="https://oauth2.staging.nuvosphere.io">
+        https://oauth2.nuvosphere.io
       </el-radio> -->
-      <!-- <el-radio value="http://localhost:1025/nuvo-login/">
-        http://localhost:1025/nuvo-login/
-      </el-radio> -->
+      <el-radio value="http://localhost:1025/"> http://localhost:1025/ </el-radio>
     </el-radio-group>
 
     <h1>Nuvo oauth2 SDK demo</h1>

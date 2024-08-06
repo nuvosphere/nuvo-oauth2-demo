@@ -3,11 +3,10 @@ import { BrowserProvider, parseEther, formatEther, toBigInt } from 'ethers'
 
 const getProvider = async (accessToken: string) => {
   const polisClient = new PolisClient({
-    chainId: 1088,
-    appId: '64ec797cf07153000129ca00',
-    apiHost: 'https://api.nuvosphere.io/',
-    oauthHost: 'https://oauth2.nuvosphere.io/',
-    oauthPath: 'oauth2',
+    chainId: 59902,
+    appId: '66b13e5b6feb840014f0568d',
+    apiHost: 'https://api.staging.nuvosphere.io',
+    oauthHost: 'http://localhost:1025/',
   })
   await polisClient.connect(accessToken, true)
   return polisClient.web3Provider
