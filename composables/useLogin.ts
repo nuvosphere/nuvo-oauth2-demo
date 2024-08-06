@@ -7,7 +7,7 @@ export const useLogin = () => {
 
   const app_id = '66b13e5b6feb840014f0568d'
   const app_key = '3a19878f8e2b40749a38a24e172f5104'
-  const return_url = 'http://localhost:3000'
+  const return_url = 'http://localhost:1024'
   const network = computed(() => {
     return `${oauth2Host.value}?app_id=${app_id}&return_url=${return_url}`
   })
