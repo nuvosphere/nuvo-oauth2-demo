@@ -1,5 +1,5 @@
-import { PolisClient, PolisProvider } from '@metis.io/middleware-client'
-import { BrowserProvider, parseEther, formatEther, toBigInt } from 'ethers'
+import { PolisClient } from '@metis.io/middleware-client'
+import { parseEther, formatEther } from 'ethers'
 
 const getProvider = async (accessToken: string) => {
   const polisClient = new PolisClient({
@@ -31,10 +31,10 @@ export const useUserStore = defineStore({
         value: parseEther(toAmount).toString(),
       }
       const provider = await getProvider(this.accessToken)
-      const signer = await provider.getSigner()
+      const signer = provider.getSigner()
       try {
         // 发送交易
-        console.log('🌊', tx)
+        console.log('tx', tx)
         const response = await signer.sendTransaction(tx)
         console.log('Transaction hash:', response.hash)
         // 等待交易被确认
@@ -48,7 +48,7 @@ export const useUserStore = defineStore({
       this.balance = '0'
       const fullLoading = ElLoading.service({ fullscreen: true, text: 'Get Balance' })
       const provider = await getProvider(this.accessToken)
-      const signer = await provider.getSigner()
+      const signer = provider.getSigner()
       const address = await signer.getAddress()
       const balance = await provider.getBalance(address)
       this.balance = formatEther(balance.toBigInt()).toString()
