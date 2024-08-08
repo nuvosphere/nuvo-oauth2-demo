@@ -26,13 +26,14 @@ export const useUserStore = defineStore({
   },
   actions: {
     async sendNativeToken() {
+      const fullLoading = ElLoading.service({ fullscreen: true, text: 'Send Native Token' })
       const tx = {
         to: toAddress,
         value: parseEther(toAmount).toString(),
       }
-      const provider = await getProvider(this.accessToken)
-      const signer = provider.getSigner()
       try {
+        const provider = await getProvider(this.accessToken)
+        const signer = provider.getSigner()
         // 发送交易
         console.log('tx', tx)
         const response = await signer.sendTransaction(tx)
@@ -43,15 +44,20 @@ export const useUserStore = defineStore({
       } catch (error) {
         console.log('tx error', error)
       }
+      fullLoading.close()
     },
     async getBalance() {
-      this.balance = '0'
       const fullLoading = ElLoading.service({ fullscreen: true, text: 'Get Balance' })
-      const provider = await getProvider(this.accessToken)
-      const signer = provider.getSigner()
-      const address = await signer.getAddress()
-      const balance = await provider.getBalance(address)
-      this.balance = formatEther(balance.toBigInt()).toString()
+      try {
+        this.balance = '0'
+        const provider = await getProvider(this.accessToken)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
+        const balance = await provider.getBalance(address)
+        this.balance = formatEther(balance.toBigInt()).toString()
+      } catch (error) {
+        console.log('get balance error', error)
+      }
       fullLoading.close()
     },
   },
