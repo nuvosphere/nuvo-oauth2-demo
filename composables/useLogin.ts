@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const useLogin = () => {
   const loginType = ref('iframe')
-  const oauth2Host = ref('http://localhost:1025/')
+  const oauth2Host = ref('https://oauth2.staging.nuvosphere.io/')
   const showIframe = ref(false)
 
   const app_id = '66b13e5b6feb840014f0568d'

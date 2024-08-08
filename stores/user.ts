@@ -6,7 +6,7 @@ const getProvider = async (accessToken: string) => {
     chainId: 59902,
     appId: '66b13e5b6feb840014f0568d',
     apiHost: 'https://api.staging.nuvosphere.io',
-    oauthHost: 'http://localhost:1025/',
+    oauthHost: 'https://oauth2.staging.nuvosphere.io/',
   })
   await polisClient.connect(accessToken, true)
   return polisClient.web3Provider

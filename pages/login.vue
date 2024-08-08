@@ -12,7 +12,9 @@
       <!-- <el-radio value="https://oauth2.staging.nuvosphere.io">
         https://oauth2.nuvosphere.io
       </el-radio> -->
-      <el-radio value="http://localhost:1025/"> http://localhost:1025/ </el-radio>
+      <el-radio value="https://oauth2.staging.nuvosphere.io/">
+        https://oauth2.staging.nuvosphere.io/
+      </el-radio>
     </el-radio-group>
 
     <h1>Nuvo oauth2 SDK demo</h1>
